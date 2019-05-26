@@ -1,4 +1,4 @@
-function [y] = predictor_corrector(krok, warunki_poczotkowe)
+function [trajectory, iters] = predictor_corrector(krok, warunki_poczotkowe)
 h = krok;
 x1=warunki_poczotkowe(1); %pierwszy pkt
 x2=warunki_poczotkowe(2); %drugi pkt
@@ -34,8 +34,7 @@ for i = 4:(length(t))
     
     y(:,i)=[x1 x2];
 end
-%plot(y(1,:),y(2,:));
-%plot(0:h:20,y(1,:),'-',0:h:20,y(2,:),'-')
-y = y';
+iters = length(t);
+trajectory = y';
 end
 
