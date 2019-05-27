@@ -20,18 +20,18 @@ function [trajectory, iters] = RK4_zmien(krok, warunki_poczotkowe)
     halfstepd=krok/2;
     for n=1:i
         if(mod(n,2) == 0)
-        k11=dx1(x1,x2);
-        k12=dx2(x1,x2);
-        k21=dx1((x1+halfstep*k11),(x2+halfstep*k12));
-        k22=dx2((x1+halfstep*k11),(x2+halfstep*k12));
-        k31=dx1((x1+halfstep*k21),(x2+halfstep*k22));
-        k32=dx2((x1+halfstep*k21),(x2+halfstep*k22));
-        k41=dx1((x1+krok*k31),(x2+krok*k32));
-        k42=dx2((x1+krok*k31),(x2+krok*k32));
-        x1=x1+(1/6)*krok*(k11+2*k21+2*k31+k41);
-        x2=x2+(1/6)*krok*(k12+2*k22+2*k32+k42);
-        X1((n/2)+1,1)=x1;
-        X2((n/2)+1,1)=x2;
+            k11=dx1(x1,x2);
+            k12=dx2(x1,x2);
+            k21=dx1((x1+halfstep*k11),(x2+halfstep*k12));
+            k22=dx2((x1+halfstep*k11),(x2+halfstep*k12));
+            k31=dx1((x1+halfstep*k21),(x2+halfstep*k22));
+            k32=dx2((x1+halfstep*k21),(x2+halfstep*k22));
+            k41=dx1((x1+krok*k31),(x2+krok*k32));
+            k42=dx2((x1+krok*k31),(x2+krok*k32));
+            x1=x1+(1/6)*krok*(k11+2*k21+2*k31+k41);
+            x2=x2+(1/6)*krok*(k12+2*k22+2*k32+k42);
+            X1((n/2)+1,1)=x1;
+            X2((n/2)+1,1)=x2;
         end
         k11d=dx1(x1d,x2d);
         k12d=dx2(x1d,x2d);
@@ -49,6 +49,6 @@ function [trajectory, iters] = RK4_zmien(krok, warunki_poczotkowe)
             Y ((n/2)+1,1)= double((n/2)+1)*krok;
         end
     end
-    trajectory = [X1;X2];
+    trajectory = [X1 X2];
     iters = i;
 end
